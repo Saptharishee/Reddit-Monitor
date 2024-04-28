@@ -10,9 +10,9 @@ import os
 
 app = Flask(__name__)
 
-reddit = praw.Reddit(client_id='WL1mhJ9m5SMqvop3pFKnXA',
-                     client_secret='Lz7CrlYbC69LFpQAgI3gLFPXbtnhWA',
-                     user_agent='Honest-Car-8314')
+reddit = praw.Reddit(client_id='<>',
+                     client_secret='<>',
+                     user_agent='<>')
 
 # Initialize the Hugging Face sentiment-analysis pipeline
 sentiment_pipeline = pipeline('sentiment-analysis')
