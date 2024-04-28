@@ -1,0 +1,52 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #1a1a1a; /* Dark background color */
+    color: #fff; /* Light text color */
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #fff; /* Light text color */
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.post {
+    background-color: #333; /* Darker post background color */
+    border: 1px solid #555; /* Darker border color */
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.post-title {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+    color: #fff; /* Light text color */
+}
+
+.post-sentiment {
+    color: #007bff;
+    font-style: italic;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}

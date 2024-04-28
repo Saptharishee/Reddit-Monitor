@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reddit Posts</title>
+    <link rel="stylesheet" type="text/css" href="\style.css">
+
+</head>
+<body>
+    <div class="container">
+        <h1>Reddit Posts</h1>
+        <form action="{{ url_for('search_posts') }}" method="GET">
+            <input type="text" name="keywords" placeholder="Enter keywords...">
+            <button type="submit">Search</button>
+        </form>
+        <div class="filters">
+            <a href="{{ url_for('filter_posts', sentiment='all') }}">All</a>
+            <a href="{{ url_for('filter_posts', sentiment='positive') }}">Positive</a>
+            <a href="{{ url_for('filter_posts', sentiment='negative') }}">Negative</a>
+            <a href="{{ url_for('filter_posts', sentiment='neutral') }}">Neutral</a>
+        </div>
+        <ul>
+            {% for post in posts %}
+                <li class="post">
+                    <div class="post-title"><a href="{{ url_for('post_detail', post_id=post.id) }}">{{ post.title }}</a></div>
+                    <div class="post-sentiment">Sentiment: {{ post.sentiment }}</div>
+                </li>
+            {% endfor %}
+        </ul>
+        {% if pagination %}
+            <div class="pagination">
+                {{ pagination.links }}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
