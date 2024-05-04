@@ -25,12 +25,15 @@
                     <div class="post-sentiment">Sentiment: {{ post.sentiment }}</div>
                 </li>
             {% endfor %}
+
         </ul>
+        <a href="/save_csv" class="btn btn-primary">Save as CSV</a>
         {% if pagination %}
             <div class="pagination">
                 {{ pagination.links }}
             </div>
         {% endif %}
     </div>
+    
 </body>
 </html>

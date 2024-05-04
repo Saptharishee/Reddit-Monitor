@@ -6,5 +6,9 @@
 <body>
     <h1>Network Analysis</h1>
     <img src="\static\network_analysis.png" alt="Network Analysis Plot">
+    <script>
+        // Display the Plotly plot
+        document.getElementById('plot').innerHTML = '{{ plot_html|safe }}';
+    </script>
 </body>
 </html>

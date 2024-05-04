@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LDA Topic Modeling</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pyldavis@3.3.1/dist/pyLDAvis.css">
+</head>
+<body>
+    <h1>LDA Topic Modeling</h1>
+    
+    <div id="lda_vis"></div>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/d3@7.0.0/dist/d3.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pyldavis@3.3.1/dist/pyLDAvis.js"></script>
+    <script type="text/javascript">
+        var vis = new Promise((resolve, reject) => {
+            var data = {{ vis }};
+            if (data !== undefined) {
+                resolve(data);
+            } else {
+                reject(Error("No data available"));
+            }
+        });
+
+        vis.then((data) => {
+            var vis_element = document.getElementById('lda_vis');
+            pyLDAvis.display(data, vis_element);
+        }).catch((error) => {
+            console.log(error);
+        });
+    </script>
+</body>
+</html>

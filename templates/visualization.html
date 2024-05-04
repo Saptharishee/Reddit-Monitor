@@ -19,10 +19,32 @@
                 <li>{{ poster }} - {{ post_count }} posts</li>
             {% endfor %}
         </ul>
+        
+        <!-- Add Daily Posting Activity Chart -->
+        <h3>Daily Posting Activity</h3>
+        <div id="daily_chart">
+            {{ fig_daily|safe }}
+        </div>
+
+        <!-- Add Hourly Posting Activity Chart -->
+        <h3>Hourly Posting Activity</h3>
+        <div id="hourly_chart">
+            {{ fig_hourly|safe }}
+        </div>
     </div>
-    <script>
-        // Display the Plotly plot
-        document.getElementById('plot').innerHTML = '{{ plot_html|safe }}';
-    </script>
+
+
+
+<h3>Word Cloud</h3>
+<div id="wordcloud">
+    <img src="\static\wordcloud.png" alt="Word Cloud">
+</div>
+<script>
+    // Display the Plotly plot
+    document.getElementById('plot').innerHTML = '{{ plot_html|safe }}';
+</script>
+
+
+
 </body>
 </html>
