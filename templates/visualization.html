@@ -7,7 +7,7 @@
 <body>
     <div class="container">
         <h1>Data Visualization</h1>
-        <div id="plot"></div>
+        <div id="sentiment_plot"></div>
         <h2>Most Active Poster: {{ most_active_poster }}</h2>
         <h3>Most Active Post:</h3>
         <p>Title: {{ most_active_post.title }}</p>
@@ -31,20 +31,23 @@
         <div id="hourly_chart">
             {{ fig_hourly|safe }}
         </div>
+
+        <!-- Add Heatmap Visualization -->
+        <h3>Post Frequency Heatmap</h3>
+        <div id="heatmap_chart">
+            {{ fig_heatmap|safe }}
+        </div>
+
+        <!-- Word Cloud -->
+        <h3>Word Cloud</h3>
+        <div id="wordcloud">
+            <img src="\static\wordcloud.png" alt="Word Cloud">
+        </div>
     </div>
 
-
-
-<h3>Word Cloud</h3>
-<div id="wordcloud">
-    <img src="\static\wordcloud.png" alt="Word Cloud">
-</div>
-<script>
-    // Display the Plotly plot
-    document.getElementById('plot').innerHTML = '{{ plot_html|safe }}';
-</script>
-
-
-
+    <script>
+        // Display the Plotly plot for sentiment distribution
+        document.getElementById('sentiment_plot').innerHTML = '{{ plot_html|safe }}';
+    </script>
 </body>
 </html>
