@@ -148,10 +148,7 @@ def post_detail(post_id):
     submission = reddit.submission(id=post_id)
     post_sentiment = sentiment_pipeline(submission.title)[0]['label']
     return render_template('post_detail.html', title=submission.title, url=submission.url, sentiment=post_sentiment)
-
-
-
-
+  
 @app.route('/visualization')
 def visualization():
     posts, users = fetch_posts(subreddit_name)
@@ -189,8 +186,17 @@ def visualization():
     fig_daily = px.line(x=daily_counts.index, y=daily_counts.values, labels={'x':'Date', 'y':'Number of Posts'}, title='Daily Posting Activity')
     fig_hourly = px.line(x=hourly_counts.index, y=hourly_counts.values, labels={'x':'Hour of the Day', 'y':'Number of Posts'}, title='Hourly Posting Activity')
 
-    return render_template('visualization.html', plot_html=fig.to_html(full_html=False), most_active_poster=most_active_poster, most_active_post=most_active_post, top_posters=top_posters, fig_daily=fig_daily.to_html(full_html=False), fig_hourly=fig_hourly.to_html(full_html=False))
+    #Heatmap 
+    df['timestamp'] = pd.to_datetime(df['timestamp'], unit='s')
+    # Convert 'date_interval' from Period to string for JSON serialization
+    df['date_interval'] = df['timestamp'].dt.to_period('D').astype(str)
 
+    # Now you can group by 'date_interval' and create your heatmap as before
+    frequency = df.groupby('date_interval').size().reset_index(name='post_count')
+    heatmap_data = frequency.pivot(index='date_interval', columns='post_count', values='post_count')
+    fig_heatmap = px.imshow(heatmap_data, color_continuous_scale='YlOrRd', labels=dict(x="Date Interval", y="Number of Posts", color="Post Count"))
+    fig_heatmap.update_layout(title='Post Frequency Heatmap')
+    return render_template('visualization.html', plot_html=fig.to_html(full_html=False), most_active_poster=most_active_poster, most_active_post=most_active_post, top_posters=top_posters, fig_daily=fig_daily.to_html(full_html=False), fig_hourly=fig_hourly.to_html(full_html=False), fig_heatmap=fig_heatmap.to_html(full_html=False))
 @app.route('/network_analysis')
 def network_analysis():
     limit = 10  # Limit the number of submissions to analyze
